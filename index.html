@@ -185,7 +185,8 @@
     <link rel="stylesheet" href="css/style.css" />
 	<link rel="stylesheet" href="css/courser.css" />
 
-  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+
   <script>
     (function(){
       emailjs.init("XcTQcIGiUtZh3S-Uf"); // Replace with your public key
@@ -754,7 +755,7 @@
 
         <div class="row no-gutters block-9">
           <div class="col-md-6 order-md-last d-flex">
-            <form action="#" class="bg-light p-4 p-md-5 contact-form">
+            <form id="contact-form" action="#" class="bg-light p-4 p-md-5 contact-form">
               <div class="form-group">
                 <input
                   type="text"
@@ -1034,6 +1035,32 @@ function toggleTheme() {
         cursor.style.transform = 'scale(1)';
     });
 </script>
+<script>
+  emailjs.init('XcTQcIGiUtZh3S-Uf'); // Initialize EmailJS with your user ID
+
+  document.getElementById('contact-form').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent default form submission
+
+    // Get form data
+    const name = document.querySelector('input[name="name"]').value;
+    const email = document.querySelector('input[name="email"]').value;
+    const subject = document.querySelector('input[name="subject"]').value;
+    const message = document.querySelector('textarea[name="message"]').value;
+
+    // Send email using EmailJS
+    emailjs.send('service_nb4ppyj', 'template_cit8eik', {
+      name: name,
+      email: email,
+      subject: subject,
+      message: message
+    }).then(function(response) {
+      alert('Your message was sent successfully!');
+    }, function(error) {
+      alert('Oops! Something went wrong. Please try again.');
+    });
+  });
+</script>
+
 
 	
 
