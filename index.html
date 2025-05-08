@@ -184,15 +184,28 @@
     <link rel="stylesheet" href="css/icomoon.css" />
     <link rel="stylesheet" href="css/style.css" />
 	<link rel="stylesheet" href="css/courser.css" />
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+  
+<script type="text/javascript" src="https://cdn.emailjs.com/sdk/3.6.2/email.min.js"></script>
+<script>
+  (function(){
+    emailjs.init("dYK8Rb4nJtVxirRHF");
+  })();
+
+  function sendEmail() {
+    emailjs.send("service_nb4ppyj", "template_6qess8t", {
+      name: document.getElementById("name").value,
+    email: document.getElementById("email").value,
+      message: document.getElementById("message").value
+    }).then(
+      function(response) {
+        alert("Message sent!");
+      }, function(error) {
+        alert("Failed. Try again.");
+      }
+    );
+  }
 </script>
-<script type="text/javascript">
-(function(){
-emailjs.init({
-  publicKey: "dYK8Rb4nJtVxirRHF",
-});
-})();
-</script>
+
   </head>
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
     <nav
@@ -797,7 +810,7 @@ emailjs.init({
                 <input
                   type="submit"
                   value="Send "
-                  onclick="submitMail()"
+                  onclick="sendEmail()"
                   class="btn btn-primary py-3 px-5"
                 />
               </div>
@@ -1093,7 +1106,7 @@ function toggleTheme() {
     <script src="js/scrollax.min.js"></script>
 	<script src="js/prize.js"></script>
     <script src="js/main.js"></script>
-    <script src="js/script.js"></script>
+   
 	<script src="js/curser.js"></script>
 	
 
